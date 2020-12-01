@@ -41,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        binding.buttonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(LOG_TAG,"Button clicked");
+
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                String message = binding.editTextMain.getText().toString();
+                intent.putExtra(EXTRA_MESSAGE,message);
+                startActivityForResult(intent, TEXT_REQUEST);
+            }
+        });
+
     }
     
     @Override
@@ -90,16 +102,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG,"Button clicked");
-
-        Intent intent = new Intent(this, SecondActivity.class);
-        String message = binding.editTextMain.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE,message);
-        startActivityForResult(intent, TEXT_REQUEST);
-
-
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
